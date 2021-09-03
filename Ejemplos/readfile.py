@@ -1,4 +1,4 @@
-file = open('mbox-short.txt')
+file = open('../mbox-short.txt')
 
 text = file.read()
 

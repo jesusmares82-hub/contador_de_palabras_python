@@ -11,16 +11,18 @@ class File:
         try:
             with open(self.file_name, 'r') as f:
                 self.text: str = f.read()
-            print(self.text)
-        except FileNotFoundError as error:
-            print(error)
+
+        except FileNotFoundError:
             print("The file you are trying to open does not exist!")
+
+
+class WordsRepeated(File):
 
     def unwanted_chars(self):
         unwanted = [',', '.', '¡', '!', '¿', '?', '(', ')', '"', "'"]
         for char in unwanted:
             self.text = self.text.replace(char, '')
-        return text
+        return self.text
 
     def get_words(self):
         self.text = self.unwanted_chars()
@@ -44,9 +46,11 @@ class File:
 
     def show_10_most_repeated(self):
         result = self.repeat_words()
-        print("10 most repeated words: \n", result[:10])
+        if len(result) != 0:
+            print("10 most repeated words: \n", result[:10])
 
 
-my_file = File()
+my_file = WordsRepeated()
 my_file.read_file_name()
 my_file.open_file()
+my_file.show_10_most_repeated()
